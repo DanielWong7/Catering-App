@@ -1,0 +1,137 @@
+html,body{
+	background-color: lightgrey;
+	height: 1080px;
+	width: 1920px;
+	margin: 0;
+	border: 0;
+}
+
+.header {
+	height: 100px;
+	width: 1916px;
+	overflow: hidden;
+	background-color: #333;
+	padding: 20px 2px;
+	margin: 0;
+	color: white;
+}
+
+.header .header-right a {
+  color: black;
+  text-align: center;
+  padding: 15px;
+  text-decoration: none;
+  font-size: 18px;
+  line-height: 30px;
+  border-radius: 4px;
+
+}
+.header .header-right button[value="Refresh Page"]{
+  	height: 50px;
+	width:150px;
+	color: white;
+	border-color: dodgerblue;
+	background-color: dodgerblue ;
+	font-size: 18px;
+	border-radius: 4px;
+	margin: 20px;
+	float: right;
+}
+
+.header a.active {
+  background-color: dodgerblue;
+  color: white;
+}
+
+
+.header-right {
+  float: right;
+
+}
+
+p[id="dateTime"]{
+	position: relative;
+	width: 533px;
+	margin: 10px 0;
+	float: right;
+}
+
+.outbox{
+	margin: 0;
+	font: 20px verdana, sans-serif;
+	border: 2px solid black;
+	width: 1916px;
+	height:936px;
+	color: black;
+	background-color: white;
+}
+.show{
+	border: 2px solid black;
+	width: 75%;
+	height:94%;
+	margin:10px 10px;
+	padding: 15px;
+	float: left;
+}
+.show h2{
+	font-size: 30px;
+	margin: 0;
+	z-index: 5;
+
+}
+.show div{
+	height: 110px;
+	width: 49%;
+	margin: 11px 5px;
+	float: left;
+}
+.show p{
+	margin: 0;
+	width: 660px;
+	height: 100px;
+	word-wrap: break-word;
+}
+.size1{
+	font: 32px verdana, sans-serif;
+}
+.size1 h2{
+	font-size: 45px;
+	margin: 0;
+	z-index: 5;
+
+}
+#selector{
+	border: 2px solid black;
+	width: 19%;
+	height: 94%;
+	margin: 10px 10px;
+	padding:15px;
+	float: right;
+	overflow: auto;
+}
+.shrtcntt{
+	height: 40%;
+	width: 90%;
+	margin: 5px;
+	border: 2px solid black;
+	color: black;
+	border-radius: 10px;
+	padding:15px;
+	font-size: 	20px;
+	line-height: 50px;
+	float: right;
+	cursor: pointer;
+}
+.shrtcntt h1{
+	height: 20px;
+	margin:0;
+	font-size: 	1em;
+}
+
+img[src="dshop-logo-small.png"]{
+	height: 100px;
+	width: 200px;
+	position: absolute;
+	display: block;
+	padding: 10px;
+}

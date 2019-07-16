@@ -1,0 +1,296 @@
+<style>
+aside, article, section, header, footer, nav {
+	display: block;
+}
+
+html, body {
+	margin: 0;
+	padding: 0;
+
+}
+html{
+	background: url(bg.jpg) no-repeat;
+	background-size: cover;
+}
+body{
+	background-color:rgba(135,206,250,0.2);
+	width: 700px;
+	margin: 2em auto 2em;
+	font: 100% Arial, Helvetica, sans-serif;
+	padding: 25px;
+}
+.sapimage{
+	width:40%;
+	height:40%;
+	position: inherit; 
+	transform: translate(127%,0);
+}
+.usericon{
+	float: right;
+	height: 80px;
+	width: 4.1em;
+	position: relative;
+	user-drag: none; 
+	user-select: none;
+	-moz-user-select: none;
+	-webkit-user-drag: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+}
+h1{
+	text-align: center;
+	border-bottom: 6px solid #FFCC66;
+	padding: 13px 0;
+	color: black;
+}
+.formclass {
+	width: 80%;
+ 	border-radius: 5px;
+ 	transform: translate(3em);
+}
+.formclass input,select{
+	width: 100%;
+	border: 1px solid grey;
+	margin: 20px;
+	padding: 14px 15px;
+	box-sizing: border-box;
+	border-radius: 5px;
+	display: inline-block;
+	background: rgba(211,211,211,.1);
+
+}
+.formclass button{
+	width: 100%;
+	margin: 20px;
+	padding: 14px 15px;
+	box-sizing: border-box;
+	border-radius: 5px;
+	border: none;
+	background-color:  #4CAF50;
+	color: white;
+	font-size: 1em;
+
+}
+.formclass label{
+	color: black;
+	font-size: 1.2em;
+}
+input[name="floor"]{
+	background-color:darkgrey;
+}
+button[type=submit]:hover {
+  background-color: #45a049;
+  cursor: pointer;
+}
+::placeholder {
+  color: black;
+  opacity: 1;
+}
+.burger{
+  width: 4.1em;
+  height: 1.1em;
+  background-color: #3498DB;
+  color: white;
+  margin: 5px 0;
+  position: relative;
+  pointer-events: none;
+}
+.dropbtn,.usericon{
+	background-color: transparent;
+	cursor: pointer;
+	width: 5em;
+	height: 5em;
+	border: none;
+	pointer-events: visible;
+}
+.menuContent,.menuContentUser{
+	display: none;
+	position: absolute;
+	background-color: #f1f1f1;
+	min-width: 160px;
+	z-index: 1;
+	pointer-events: visible;
+}
+.menuContent a, .menuContentUser a{
+	color: black;
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
+	pointer-events: visible;
+
+}.menuContent a:hover{background-color: #ddd}.show{display:block;}
+
+.user{
+	float: right;
+	height: 200px;
+
+}
+#dropMenuUser{
+	float: right;
+	margin-top: 81px;
+}
+/*
+#sidebar{
+	position: fixed;
+	width: 300px;
+	height: 100%;
+	background-color: white;
+	cursor: pointer;
+	left: -300px;
+}
+#sidebar.active{
+	left: 0px;
+}
+#sidebar a{
+	padding:15px 10px;
+	border-bottom: 1px solid grey;
+}
+#sidebar .togglebtn span{
+display: block;
+width: 4.1em;
+  height: 1.1em; 
+  background-color: #3498DB;
+  margin: 5px 0;
+}
+sidebar
+*/
+@media only screen and (min-width: 600px) and (max-width: 920px){
+	body{
+		width: 90%;
+	}
+	input[name="floor"]{
+	background-color:darkgrey;
+}
+}
+@media	only screen and (max-width: 599px){
+	html{
+	}
+	body{
+		width: 80%;
+
+	}
+	.formclass input{
+		margin: 10px;
+		transform: translate(-2em);
+	}
+	.formclass select{
+		margin: 10px;
+		transform: translate(-2em);
+	}
+	.formclass button[type="submit"]{
+		margin: 10px;
+		transform: translate(-1.7em);
+	}
+	.formclass label{
+		position: relative;
+		right: 50px;
+
+	}
+	input[name="floor"]{
+		background-color:darkgrey;
+}
+
+}
+@media only screen and (min-width: 921px){
+	body{
+		width: 980px;
+	}
+	.formclass {
+		float: left;
+		width: 100%;
+	 	border-radius: 5px;
+	 	transform: translate(3em);
+
+	 }
+.formclass input{
+	width: 35%;
+	border: 1px solid grey;
+	margin: 20px;
+	padding: 14px 15px;
+	box-sizing: border-box;
+	border-radius: 5px;
+	display: inline-block;
+	background: rgba(211,211,211,.1);
+	margin-right: 13%;
+
+}
+input[name="floor"]{
+	background-color:darkgrey;
+}
+.formclass select{
+	width: 35%;
+	border: 1px solid grey;
+	margin: 20px;
+	padding: 14px 15px;
+	box-sizing: border-box;
+	border-radius: 5px;
+	display: inline-block;
+	background: rgba(211,211,211,.1);
+	margin-right: 13%;
+}
+.formclass .formRight{
+/*this is for the right side that gets pushed if margin not 0*/
+	margin: 20px 0 20px 20px;
+}
+.formclass button[type="submit"]{
+	width: 85%;
+	margin: 20px;
+	padding: 14px 15px;
+	box-sizing: border-box;
+	border-radius: 5px;
+	border: none;
+	background-color:  #4CAF50;
+	color: white;
+	font-size: 1em;
+}
+.formclass button{
+	width: 85%;
+	margin: 20px;
+	padding: 14px 15px;
+	box-sizing: border-box;
+	border-radius: 5px;
+	border: none;
+	background-color:  #4CAF50;
+	color: white;
+	font-size: 1em;
+}
+button:hover {
+  cursor: pointer;
+}
+.formclass label{
+	color: black;
+	font-size: 1.2em;
+	position: absolute;
+}
+.sapimage{
+	height: 15%;
+	width: 15%;
+	transform: translate(0,0);
+}
+}
+.WarningBox{
+	position: absolute;
+	right:100px;
+	top:550px;
+	width:300px;
+	font-size: 1.2em;
+	border-style: solid;
+	border-color: black;
+	border-width: 3px;
+	padding: 5px; 
+	background-color: white;
+	color: black;
+}
+.DateWarningBox{
+	position: absolute;
+	right:100px;
+	top:350px;
+	width:200px;
+	font-size: 1.2em;
+	border-style: solid;
+	border-color: black;
+	border-width: 3px;
+	padding: 5px; 
+	background-color: white;
+	color: black;
+}
