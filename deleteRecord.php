@@ -95,6 +95,7 @@ if(isset($_POST['deleteRecord'])&&isset($_POST['ID'])&&!isset($_POST['Col']))/*&
                 $after=implode("|", $all);
                 $dblog = "INSERT INTO log (User,BeforeChange,AfterChange,Type) VALUES ('$user','$before','$after','Edit');";
                 mysqli_query( $connection, $dblog );
+                header("Location:../deleteRecord.php");
             }else{
                header("Location:../deleteRecord.php?error=RecPast");
             }
