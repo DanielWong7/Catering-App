@@ -140,25 +140,8 @@
         <input type="number" min="1000" max="9999"  name="cost_center" required="required">
     <label for="organizer">*Organizer:</label>
         <input type="text" name="organizer" class="formRight" required="required"></br>
-    <button type="button" id="submitbutton"onclick="Validator()">Submit</button>
-    <input id="submit_handle" type="submit" style="display: none">
-</form>
+    <button type="Submit" id="submitbutton">Submit</button>
 </div>
-<script type="text/javascript">
-    function Validator(){
-        var end_time=document.getElementById("end_time");
-        var start_time=document.getElementById("start_time");
-        if (start_time.value<end_time.value){
-            document.getElementById("submit_handle").click();
-            return true;
-        }
-        else{
-            alert("Invalid Times!");
-            document.getElementById("start_time").focus();
-            return false;
-        }
-    }
-</script>
 
 <!--<script type="text/javascript">
     var insertpriv = <?php echo $_SESSION['insert']?>;
@@ -189,20 +172,28 @@
         var end_time=document.getElementById("end_time");
         var start_time=document.getElementById("start_time");
         var delivery_time=document.getElementById("delivery_time");
-        if (delivery_time.value>start_time.value&&delivery_time.value<end_time.value){
+        if (delivery_time.value>start_time.value&&delivery_time.value<=end_time.value){
             document.getElementById("WarningBox").innerHTML="WARNING! Delivery Time During Meeting!";
             document.getElementById("WarningBox").style.display = "inline";
             document.getElementById("submitbutton").disabled = true;
             document.getElementById("submitbutton").style.backgroundColor="#a9dbab";
             document.getElementById("submitbutton").style.color="grey";
+            document.getElementById("delivery_time").focus();
         }else if (delivery_time.value>end_time.value){
             document.getElementById("WarningBox").innerHTML="ERROR! Delivery Time After Meeting!";
             document.getElementById("WarningBox").style.display = "inline";
             document.getElementById("submitbutton").disabled = true;
             document.getElementById("submitbutton").style.backgroundColor="#a9dbab";
             document.getElementById("submitbutton").style.color="grey";
-        }
-        else{
+            document.getElementById("delivery_time").focus();
+        }else if (end_time.value<=start_time.value){
+            document.getElementById("WarningBox").innerHTML="ERROR! Invalid Start or End Times!";
+            document.getElementById("WarningBox").style.display = "inline";
+            document.getElementById("submitbutton").disabled = true;
+            document.getElementById("submitbutton").style.backgroundColor="#a9dbab";
+            document.getElementById("submitbutton").style.color="grey";
+            document.getElementById("start_time").focus();
+        }else{
             document.getElementById("WarningBox").style.display = "none";
             document.getElementById("submitbutton").disabled = false;
             document.getElementById("submitbutton").style.backgroundColor = "#45a049";
@@ -223,8 +214,12 @@
             document.getElementById("submitbutton").disabled = true;
             document.getElementById("submitbutton").style.backgroundColor="#a9dbab";
             document.getElementById("submitbutton").style.color="grey";
+            document.getElementById("date").focus();
         }else{
-            document.getElementById("DateWarningBox").style.display = "none";
+            document.getElementById("DateWarningBox").style.display = "none"
+            document.getElementById("submitbutton").disabled = false;
+            document.getElementById("submitbutton").style.backgroundColor = "#45a049";
+            document.getElementById("submitbutton").style.color = "white";
         }
     }
 </script>
