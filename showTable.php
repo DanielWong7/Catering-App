@@ -43,7 +43,7 @@ else if($_SESSION['view']==0){
     echo "<table id='datatable'>";
     $resultCheck = mysqli_num_rows($result);
     if($resultCheck>0){
-        echo "  <tr><th>Purpose</th><th>Date\n(yyyy-mm-dd)</th><th>Floor</th><th>Room</th><th>Number of Attendees</th><th>Food</th><th>Delivery Time</th><th>Start Time\n(hh:mm:ss)</th><th>End Time</th><th>Morning Break</th><th>Afternoon Break</th><th>Notes/Dietary Restrictions:</th><th>Meal</th><th>Hot or Cold</th><th>Drinks</th><th>Vendor</th><th>LoBCostCenter</th><th>Cost</th><th>Comments</th></tr>";
+        echo "  <tr><th>Purpose</th><th>Date\n(yyyy-mm-dd)</th><th>Floor</th><th>Room</th><th>Number of Attendees</th><th>Food</th><th>Delivery Time</th><th>Start Time\n(hh:mm:ss)</th><th>End Time</th><th>Morning Break</th><th>Afternoon Break</th><th>Notes/ Dietary Restrictions</th><th>Meal</th><th>Hot or Cold</th><th>Drinks</th><th>Vendor</th><th>LoB CostCenter</th><th>Cost</th><th>Comments</th></tr>";
         while($all =mysqli_fetch_assoc($result) ){
             echo "<tr><td>".$all['Purpose']. "</td><td>" .  $all['Date'] . "</td><td>".$all['Floor']. "</td><td>". $all['Room']. "</td><td>".$all['Attendees']. "</td><td>". $all['Food']. "</td><td>". $all['DeliveryTime']. "</td><td>" . $all['StartTime'] . "</td><td>". $all['EndTime']   . "</td><td>". $all['MorningBreak'] . "</td><td>" .$all['AfternoonBreak']    . "</td><td>".$all['Restrictions']. "</td><td>".$all['Meal'] . "</td><td>".$all['HotCold'] . "</td><td>".$all['Drinks'] . "</td><td>". $all['Vendor']  . "</td><td>".$all['LoBCostCenter']."</td><td>".$all['Cost']."</td><td>".$all['Comments']."</td></tr>"; 
  }
