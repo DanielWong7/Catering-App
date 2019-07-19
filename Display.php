@@ -39,10 +39,11 @@ if(!isset($_GET['shrtNum'])){
 			<?php
 				//RIGHT SCROLLBAR
 				//always show the next 10 catering requests			
-				$displayed = 0;
+				//$displayed = 0;
+				$eventsLeft=true;
 				$c = 0;
-				while($displayed<10){
-					$resultEmp = mysqli_query( $connection, "SELECT * FROM cateringdata WHERE Date>=CURDATE() ORDER BY date,DeliveryTime ASC, Floor DESC LIMIT $c, 1;");
+				while($eventsLeft==true){
+					$resultEmp = mysqli_query( $connection, "SELECT * FROM cateringdata WHERE Date>=CURDATE() ORDER BY date,DeliveryTime ASC, Purpose ASC, Floor DESC LIMIT $c, 1;");
 					$allEmp =mysqli_fetch_assoc($resultEmp);
 					$str_time = $allEmp['EndTime']; //end time
 					sscanf($str_time, "%d:%d:%d", $hours, $minutes, $seconds);
@@ -50,15 +51,14 @@ if(!isset($_GET['shrtNum'])){
 					$currentTime = date('H:i:s',strtotime('+6 hour',strtotime(date('h:i:s'))));//current time, MAY CHANGE ON TIME ZONE
 					sscanf($currentTime, "%d:%d:%d", $hours, $minutes, $seconds);
 					$ctime_seconds = isset($hours) ? $hours * 3600 + $minutes * 60 + $seconds : $minutes * 60 + $seconds;//current time in seconds				
-					if(date("Y-m-d")==$allEmp['Date']&&$ctime_seconds>$time_seconds){ //if current time is past end time
-					}else{
+					if(!(date("Y-m-d")==$allEmp['Date']&&$ctime_seconds>$time_seconds)){ //if current time is past end time
 						if ($allEmp['Purpose']!=""){
 							echo '<div class="shrtcntt shrtcntt'.$c.'" onclick="replaceShow('.$c.')">';
 							echo"<h1>Purpose:</h1>";
 							echo $allEmp['Purpose'];
 
 							echo"<h1>Date:</h1>";
-							$resultT = mysqli_query( $connection, "SELECT DATE_FORMAT(Date, '%b %e, %Y') FROM cateringdata WHERE Date>=CURDATE() ORDER BY date,DeliveryTime ASC, Floor DESC LIMIT $c, 1;");
+							$resultT = mysqli_query( $connection, "SELECT DATE_FORMAT(Date, '%b %e, %Y') FROM cateringdata WHERE Date>=CURDATE() ORDER BY date,DeliveryTime ASC, Purpose ASC, Floor DESC LIMIT $c, 1;");
 					    	$allT =mysqli_fetch_assoc($resultT);
 						    echo $allT["DATE_FORMAT(Date, '%b %e, %Y')"];
 
@@ -69,12 +69,14 @@ if(!isset($_GET['shrtNum'])){
 							echo $allEmp['Room'];
 
 							echo"<h1>Delivery Time:</h1>";
-							$resultT = mysqli_query( $connection, "SELECT DATE_FORMAT(DeliveryTime, '%h:%i %p') FROM cateringdata WHERE Date>=CURDATE() ORDER BY date,DeliveryTime ASC, Floor DESC LIMIT $c, 1;");
+							$resultT = mysqli_query( $connection, "SELECT DATE_FORMAT(DeliveryTime, '%h:%i %p') FROM cateringdata WHERE Date>=CURDATE() ORDER BY date,DeliveryTime ASC, Purpose ASC, Floor DESC LIMIT $c, 1;");
 							$allT =mysqli_fetch_assoc($resultT);
 							echo $allT["DATE_FORMAT(DeliveryTime, '%h:%i %p')"];
 							echo '</div>';
+						}else{
+							$eventsLeft = false;
 						}
-						$displayed++;
+						//$displayed++;
 					}
 					$c++;
 				}										
@@ -94,7 +96,7 @@ function replaceShow(shrtNum){
 </script>
 <!-- Below is main display -->
 <?php
-	$all=mysqli_fetch_assoc(mysqli_query( $connection, "SELECT * FROM cateringdata WHERE Date>=CURDATE() ORDER BY date,DeliveryTime ASC, Floor DESC LIMIT $showNum, 1;"));
+	$all=mysqli_fetch_assoc(mysqli_query( $connection, "SELECT * FROM cateringdata WHERE Date>=CURDATE() ORDER BY date,DeliveryTime ASC, Purpose ASC, Floor DESC LIMIT $showNum, 1;"));
 	$str_time = $all['EndTime']; //end time
 	sscanf($str_time, "%d:%d:%d", $hours, $minutes, $seconds);
 	$time_seconds = isset($hours) ? $hours * 3600 + $minutes * 60 + $seconds : $minutes * 60 + $seconds;//end time in seconds
@@ -117,7 +119,7 @@ function replaceShow(shrtNum){
 	<div id="DateID" class="size1">
 		<h2>Date</h2>
 		<?php
-		    $resultT = mysqli_query( $connection, "SELECT DATE_FORMAT(Date, '%b %e, %Y') FROM cateringdata WHERE Date>=CURDATE() ORDER BY date,DeliveryTime ASC, Floor DESC LIMIT $showNum, 1;");
+		    $resultT = mysqli_query( $connection, "SELECT DATE_FORMAT(Date, '%b %e, %Y') FROM cateringdata WHERE Date>=CURDATE() ORDER BY date,DeliveryTime ASC, Purpose ASC, Floor DESC LIMIT $showNum, 1;");
 		    $allT =mysqli_fetch_assoc($resultT);
 		    echo $allT["DATE_FORMAT(Date, '%b %e, %Y')"];
 		?>
@@ -150,7 +152,7 @@ function replaceShow(shrtNum){
 	<div id="dTimeID" class="size1">
 		<h2>Delivery Time</h2>
 		<?php
-			$resultT = mysqli_query( $connection, "SELECT DATE_FORMAT(DeliveryTime, '%h:%i %p') FROM cateringdata WHERE Date>=CURDATE() ORDER BY date,DeliveryTime ASC, Floor DESC LIMIT $showNum, 1;");
+			$resultT = mysqli_query( $connection, "SELECT DATE_FORMAT(DeliveryTime, '%h:%i %p') FROM cateringdata WHERE Date>=CURDATE() ORDER BY date,DeliveryTime ASC, Purpose ASC, Floor DESC LIMIT $showNum, 1;");
 			$allT =mysqli_fetch_assoc($resultT);
 			echo $allT["DATE_FORMAT(DeliveryTime, '%h:%i %p')"];
 		?>
@@ -158,11 +160,11 @@ function replaceShow(shrtNum){
 	<div id="TimeID">
 		<h2>Time(start to end)</h2><?php echo $all["Meal"]; ?>
 		<?php
-			$resultT = mysqli_query( $connection, "SELECT DATE_FORMAT(DeliveryTime, '%h:%i %p') FROM cateringdata WHERE Date>=CURDATE() ORDER BY date,DeliveryTime ASC, Floor DESC LIMIT $showNum, 1;");
+			$resultT = mysqli_query( $connection, "SELECT DATE_FORMAT(StartTime, '%h:%i %p') FROM cateringdata WHERE Date>=CURDATE() ORDER BY date,DeliveryTime ASC, Purpose ASC, Floor DESC LIMIT $showNum, 1;");
 			$allT =mysqli_fetch_assoc($resultT);
-			echo $allT["DATE_FORMAT(DeliveryTime, '%h:%i %p')"];
+			echo $allT["DATE_FORMAT(StartTime, '%h:%i %p')"];
 			echo " to ";
-			$resultT = mysqli_query( $connection, "SELECT DATE_FORMAT(EndTime, '%h:%i %p') FROM cateringdata WHERE Date>=CURDATE() ORDER BY date,DeliveryTime ASC, Floor DESC LIMIT $showNum, 1;");
+			$resultT = mysqli_query( $connection, "SELECT DATE_FORMAT(EndTime, '%h:%i %p') FROM cateringdata WHERE Date>=CURDATE() ORDER BY date,DeliveryTime ASC, Purpose ASC, Floor DESC LIMIT $showNum, 1;");
 			$allT =mysqli_fetch_assoc($resultT);
 			echo $allT["DATE_FORMAT(EndTime, '%h:%i %p')"];
     ?>
@@ -170,17 +172,25 @@ function replaceShow(shrtNum){
 	<div id="MBreakID">
 		<h2>Morning Break</h2>
 		<?php
-			$resultT = mysqli_query( $connection, "SELECT DATE_FORMAT(MorningBreak, '%h:%i %p') FROM cateringdata WHERE Date>=CURDATE() ORDER BY date,DeliveryTime ASC, Floor DESC LIMIT $showNum, 1;");
+			$resultT = mysqli_query( $connection, "SELECT DATE_FORMAT(MorningBreak, '%h:%i %p') FROM cateringdata WHERE Date>=CURDATE() ORDER BY date,DeliveryTime ASC, Purpose ASC, Floor DESC LIMIT $showNum, 1;");
 			$allT =mysqli_fetch_assoc($resultT);
-			echo $allT["DATE_FORMAT(MorningBreak, '%h:%i %p')"];
+			if ($allT["DATE_FORMAT(MorningBreak, '%h:%i %p')"]=="12:00 AM"){
+				echo "Field Not Entered";
+			}else{
+				echo $allT["DATE_FORMAT(MorningBreak, '%h:%i %p')"];
+			}
 		?>
 </div>
 	<div id="ABreakID">
 		<h2>Afternoon Break</h2>
 		<?php
-			$resultT = mysqli_query( $connection, "SELECT DATE_FORMAT(AfternoonBreak, '%h:%i %p') FROM cateringdata WHERE Date>=CURDATE() ORDER BY date,DeliveryTime ASC, Floor DESC LIMIT $showNum, 1;");
+			$resultT = mysqli_query( $connection, "SELECT DATE_FORMAT(AfternoonBreak, '%h:%i %p') FROM cateringdata WHERE Date>=CURDATE() ORDER BY date,DeliveryTime ASC, Purpose ASC, Floor DESC LIMIT $showNum, 1;");
 			$allT =mysqli_fetch_assoc($resultT);
-			echo $allT["DATE_FORMAT(AfternoonBreak, '%h:%i %p')"];
+			if ($allT["DATE_FORMAT(AfternoonBreak, '%h:%i %p')"]=="12:00 AM"){
+				echo "Field Not Entered";
+			}else{
+				echo $allT["DATE_FORMAT(AfternoonBreak, '%h:%i %p')"];
+			}
 		?>
 </div>
 	<div id="RestrictionsID">

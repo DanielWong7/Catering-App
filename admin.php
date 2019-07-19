@@ -15,6 +15,9 @@
 <form action="../delete_user.php" method="post">
 	<button type="submit"name="delete-user">Delete Users</button> 
 </form>
+<form action="../form.php" method="post">
+	<button  type="submit"name="form-submit">Form</button> 
+</form>
 <form action="../logout.php" method="post">
 	<button  type="submit"name="logout-submit">Logout</button> 
 </form>

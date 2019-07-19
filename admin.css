@@ -14,6 +14,10 @@ button[type="submit"]{
 	margin-bottom: 20px;
 	top: 150px;
 }
+button[type=submit]:hover {
+  background-color: #45a049;
+  cursor: pointer;
+}
 body{
 	background-color: rgba(135,206,250,0.2);
 	width: 400px;

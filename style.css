@@ -118,7 +118,7 @@ button[type=submit]:hover {
 	display: block;
 	pointer-events: visible;
 
-}.menuContent a:hover{background-color: #ddd}.show{display:block;}
+}.menuContent a:hover, .menuContentUser a:hover{background-color: #ddd}.show{display:block;}
 
 .user{
 	float: right;

@@ -17,7 +17,7 @@
             <img src="usericon.png" class="usericon" onclick="userDropFunction()">
             <div id="dropMenuUser" class="menuContentUser">
                 <a><?php echo "Hello ".$_SESSION['userUid']?></a>
-                <a></a>
+                <?php if($_SESSION['userUid']=="dshop"){echo ("<a href=admin.php>Admin Page</a>");}?>
                 <a href="logout.php">Logout</a>
             </div>
         </div>
@@ -189,13 +189,13 @@
         var end_time=document.getElementById("end_time");
         var start_time=document.getElementById("start_time");
         var delivery_time=document.getElementById("delivery_time");
-        if (delivery_time.value>=start_time.value&&delivery_time.value<end_time.value){
+        if (delivery_time.value>start_time.value&&delivery_time.value<end_time.value){
             document.getElementById("WarningBox").innerHTML="WARNING! Delivery Time During Meeting!";
             document.getElementById("WarningBox").style.display = "inline";
-            document.getElementById("submitbutton").disabled = false;
-            document.getElementById("submitbutton").style.backgroundColor = "#45a049";
-            document.getElementById("submitbutton").style.color = "white";
-        }else if (delivery_time.value>=end_time.value){
+            document.getElementById("submitbutton").disabled = true;
+            document.getElementById("submitbutton").style.backgroundColor="#a9dbab";
+            document.getElementById("submitbutton").style.color="grey";
+        }else if (delivery_time.value>end_time.value){
             document.getElementById("WarningBox").innerHTML="ERROR! Delivery Time After Meeting!";
             document.getElementById("WarningBox").style.display = "inline";
             document.getElementById("submitbutton").disabled = true;
@@ -220,6 +220,9 @@
         var date = document.getElementById("date");
         if (date.value<today){
             document.getElementById("DateWarningBox").style.display = "inline";
+            document.getElementById("submitbutton").disabled = true;
+            document.getElementById("submitbutton").style.backgroundColor="#a9dbab";
+            document.getElementById("submitbutton").style.color="grey";
         }else{
             document.getElementById("DateWarningBox").style.display = "none";
         }

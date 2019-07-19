@@ -11,7 +11,7 @@ button[type="submit"]{
 	font-size: 1em;
 
 }
-button[type="submit"]:hover {
+button[type="submit"]:hover,input[type="submit"]:hover {
   background-color: #45a049;
   cursor: pointer;
 }
