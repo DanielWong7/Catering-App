@@ -152,6 +152,7 @@ if(isset($_POST['deleteRecord'])&&isset($_POST['ID'])&&!isset($_POST['Col']))/*&
         <option value="HotCold">Hot or Cold</option>
         <option value="Drinks">Drinks</option>
         <option value="Vendor">Vendor</option> 
+        <option value="LoBCostCenter">Lob Cost Center</option>>
         <option value="Cost">Cost</option>  
         <option value="Comments">Comments</option>
     </select>
@@ -270,7 +271,7 @@ echo "</table>";
         	changeInput.step = "1";
             changeInput.type="time";
             changeInput.style.display="inline-block";
-        }else if(fieldsSelected=="5"||fieldsSelected=="11"||fieldsSelected=="14"||fieldsSelected=="17"){//free text
+        }else if(fieldsSelected=="5"||fieldsSelected=="11"||fieldsSelected=="14"||fieldsSelected=="18"){//free text
             clear();
             changeInput.type="text";
             changeInput.style.display="inline-block";
@@ -283,7 +284,7 @@ echo "</table>";
         }else if (fieldsSelected=="3"){//Rooms
         	clear();
         	room.style.display="inline-block";
-        }else if(fieldsSelected=="16"){//Cost
+        }else if(fieldsSelected=="17"){//Cost
         	clear();
         	changeInput.type="number";
         	changeInput.step = "0.01";
@@ -301,6 +302,13 @@ echo "</table>";
         }else if(fieldsSelected=="15"){//vendor
         	clear();
         	vendor.style.display="inline-block";
+        }else if (fieldsSelected=="16"){
+        	clear();
+        	changeInput.type="number";
+        	changeInput.step = "1";
+            changeInput.min = "0";
+            changeInput.max = "999999999"
+            changeInput.style.display="inline-block";
         }
 
     }

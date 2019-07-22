@@ -195,7 +195,7 @@ function replaceShow(shrtNum){
 </div>
 	<div id="RestrictionsID">
 		<h2>Notes/Dietary Restrictions</h2>
-		<p><?php
+		<p id="Restrictions"><?php
 			echo $all["Restrictions"];
 		?></p>
 </div>

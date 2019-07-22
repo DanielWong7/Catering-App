@@ -137,7 +137,7 @@
             <option value="Tim Hortons">Tim Hortons</option>
         </datalist></br>
     <label for="cost_center">*LoB Cost Center(4 Digit #):</label>
-        <input type="number" min="1000" max="9999"  name="cost_center" required="required">
+        <input type="number" min="0" max="999999999"  name="cost_center" required="required">
     <label for="organizer">*Organizer:</label>
         <input type="text" name="organizer" class="formRight" required="required"></br>
     <button type="Submit" id="submitbutton">Submit</button>

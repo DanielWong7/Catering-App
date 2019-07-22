@@ -135,3 +135,6 @@ img[src="dshop-logo-small.png"]{
 	display: block;
 	padding: 10px;
 }
+p[id="Restrictions"]{
+	color: red;
+}
