@@ -294,3 +294,16 @@ button:hover {
 	background-color: white;
 	color: black;
 }
+.LoBWarningBox{
+	position: absolute;
+	right:100px;
+	top:950px;
+	width:200px;
+	font-size: 1.2em;
+	border-style: solid;
+	border-color: black;
+	border-width: 3px;
+	padding: 5px; 
+	background-color: white;
+	color: black;
+}

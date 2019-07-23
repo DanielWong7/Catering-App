@@ -136,8 +136,8 @@
             <option value="Soup Nutsy">Soup Nutsy</option>
             <option value="Tim Hortons">Tim Hortons</option>
         </datalist></br>
-    <label for="cost_center">*LoB Cost Center(4 Digit #):</label>
-        <input type="number" min="0" max="999999999"  name="cost_center" required="required">
+    <label for="cost_center">*LoB Cost Center(9 Digit #):</label>
+        <input type="number" placeholder="000000000" max="999999999" min="0" name="cost_center" id="cost_center" onchange="BufferZeros()">
     <label for="organizer">*Organizer:</label>
         <input type="text" name="organizer" class="formRight" required="required"></br>
     <button type="Submit" id="submitbutton">Submit</button>
@@ -167,7 +167,9 @@
 <img src="sap.png" class="sapimage">
 </body>
 <div class="WarningBox" id="WarningBox" style="display: none;"><p>Delivery Time During Meeting!</p></div>
-<div class="DateWarningBox" id="DateWarningBox" style="display: none;"><p>WARNING! Date is in the past!</p></div><script type="text/javascript">
+<div class="DateWarningBox" id="DateWarningBox" style="display: none;"><p>WARNING! Date is in the past!</p></div>
+<div class="LoBWarningBox" id="LoBWarningBox" style="display: none;"><p>WARNING! Autofilled Cost Center!</p></div>
+<script type="text/javascript">
     function checkTime(){
         var end_time=document.getElementById("end_time");
         var start_time=document.getElementById("start_time");
@@ -221,6 +223,35 @@
             document.getElementById("submitbutton").style.backgroundColor = "#45a049";
             document.getElementById("submitbutton").style.color = "white";
         }
+    }
+</script>
+<script type="text/javascript">
+    function BufferZeros(){
+        var LoB = document.getElementById("cost_center").value;
+        var bufferDigits = 8;
+        while (LoB>=10){
+            LoB=(LoB-(LoB%10))/10;
+            bufferDigits--;
+        }
+        var buffer="";
+        for (c=0;c<bufferDigits;c++){
+            buffer+="0";
+        }
+        var newLoB=buffer+document.getElementById("cost_center").value;
+        document.getElementById("cost_center").value = newLoB;
+        if(buffer!=""){
+            document.getElementById("LoBWarningBox").style.display="inline";
+            document.getElementById("submitbutton").disabled = true;
+            document.getElementById("submitbutton").style.backgroundColor="#a9dbab";
+            document.getElementById("submitbutton").style.color="grey";
+            document.getElementById("cost_center").focus();
+        }else{
+            document.getElementById("LoBWarningBox").style.display = "none"
+            document.getElementById("submitbutton").disabled = false;
+            document.getElementById("submitbutton").style.backgroundColor = "#45a049";
+            document.getElementById("submitbutton").style.color = "white";
+        }
+        return true;
     }
 </script>
 </html>

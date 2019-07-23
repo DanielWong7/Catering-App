@@ -302,11 +302,11 @@ echo "</table>";
         }else if(fieldsSelected=="15"){//vendor
         	clear();
         	vendor.style.display="inline-block";
-        }else if (fieldsSelected=="16"){
+        }else if (fieldsSelected=="16"){//cost center
         	clear();
         	changeInput.type="number";
         	changeInput.step = "1";
-            changeInput.min = "0";
+            changeInput.min = "100000000";
             changeInput.max = "999999999"
             changeInput.style.display="inline-block";
         }
