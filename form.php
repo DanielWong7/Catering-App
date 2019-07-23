@@ -197,9 +197,7 @@
             document.getElementById("start_time").focus();
         }else{
             document.getElementById("WarningBox").style.display = "none";
-            document.getElementById("submitbutton").disabled = false;
-            document.getElementById("submitbutton").style.backgroundColor = "#45a049";
-            document.getElementById("submitbutton").style.color = "white";
+            checkWarnings();
         }
     }
 </script>
@@ -219,9 +217,7 @@
             document.getElementById("date").focus();
         }else{
             document.getElementById("DateWarningBox").style.display = "none"
-            document.getElementById("submitbutton").disabled = false;
-            document.getElementById("submitbutton").style.backgroundColor = "#45a049";
-            document.getElementById("submitbutton").style.color = "white";
+            checkWarnings();
         }
     }
 </script>
@@ -246,6 +242,18 @@
             document.getElementById("submitbutton").style.color="grey";
             document.getElementById("cost_center").focus();
         }else{
+            document.getElementById("LoBWarningBox").style.display="none";
+            checkWarnings();
+        }
+        return true;
+    }
+</script>
+<script type="text/javascript">
+    function checkWarnings(){
+        var times = document.getElementById("WarningBox").style.display;
+        var date = document.getElementById("DateWarningBox").style.display;
+        var LoB = document.getElementById("LoBWarningBox").style.display;
+        if (times=="none"&&date=="none"&&LoB=="none"){
             document.getElementById("LoBWarningBox").style.display = "none"
             document.getElementById("submitbutton").disabled = false;
             document.getElementById("submitbutton").style.backgroundColor = "#45a049";
