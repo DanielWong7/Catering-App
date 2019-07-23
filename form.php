@@ -237,7 +237,7 @@
         for (c=0;c<bufferDigits;c++){
             buffer+="0";
         }
-        var newLoB=buffer+document.getElementById("cost_center").value;
+        var newLoB=buffer+parseInt(document.getElementById("cost_center").value, 10);
         document.getElementById("cost_center").value = newLoB;
         if(buffer!=""){
             document.getElementById("LoBWarningBox").style.display="inline";
