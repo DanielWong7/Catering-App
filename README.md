@@ -17,3 +17,5 @@ The App aims to digitize the way SAP employees book catering services for their 
   
 ## *Acknowledgements*
 This SAP Catering App was made possible because of the hard work and hours put in by two groups of high school interns and their supervisor. Under supervision and guidance by Luis Sanroman Zugasti, the first group of high school interns: Talha Shaikh and Xiang Weng created the framework for the Catering Application. They worked extremely hard to push out a working copy of the App and by the end of their term at SAP they managed to do that. By creating that framework, the next group of interns: Danial Wong and Muhammad Hamza Mahboob, worked hard to complete enhancement requests and push out a copy of the SAP Catering App, which met the needs of the SAP Facilities Team. However, none of this could be done without the guidance of Luis and the resources available in the Dshop.  
+
+<img src="genius/images/sap.png" width ="150" ><img src="genius/images/dshop-logo-small.png" width="150" >
