@@ -46,6 +46,7 @@ if(isset($_POST['deleteRecord'])&&isset($_POST['ID'])&&!isset($_POST['Col']))/*&
     $changeTo=$_POST['Change'];
     $result=mysqli_query($connection, "SELECT * FROM cateringdata WHERE ID = $changeID");
     $all =mysqli_fetch_assoc($result);
+    $original = $all[$changeCol];
     if($all['ID']!=null){
     	if(($changeCol=='StartTime'&&$changeTo>$all['EndTime'])||($changeCol=='EndTime'&&($changeTo<$all['StartTime']||$changeTo<$all['DeliveryTime']))||($changeCol=='DeliveryTime'&&$changeTo>$all['EndTime'])){
             header("Location:../deleteRecord.php?error=InvalidTimes");
@@ -69,14 +70,16 @@ if(isset($_POST['deleteRecord'])&&isset($_POST['ID'])&&!isset($_POST['Col']))/*&
                     mysqli_stmt_execute($stmt1);
                     mysqli_stmt_close($stmt1); 
                 }
-
                 $result=mysqli_query( $connection, "SELECT * FROM cateringdata WHERE ID = $changeID");
                 $all =mysqli_fetch_assoc($result);
-
                 $after=implode("|", $all);
-                $dblog = "INSERT INTO log (User,BeforeChange,AfterChange,Type) VALUES ('$user','$before','$after','Edit');";
-                mysqli_query( $connection, $dblog );
-                header("Location:../deleteRecord.php");
+                if ($before==$after&&$original!=$changeTo){
+                    header("Location:../deleteRecord.php?error=overflow");
+                }else{                 
+                    $dblog = "INSERT INTO log (User,BeforeChange,AfterChange,Type) VALUES ('$user','$before','$after','Edit');";
+                    mysqli_query( $connection, $dblog );
+                    header("Location:../deleteRecord.php");
+                }               
             }else{
                header("Location:../deleteRecord.php?error=RecPast");
             }
@@ -211,6 +214,8 @@ if(isset($_GET['error'])){
         echo " not found.</b></br>";
     }else if($_GET['error']=='InvalidTimes'){
         echo "<br><b>Invalid Times</b></br>";
+    }else if($_GET['error']=='overflow'){
+        echo "<br><b>Value Entered too Large</b></br>";
     }
 }
 echo "</h5>";
