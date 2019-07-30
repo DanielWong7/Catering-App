@@ -50,33 +50,14 @@ if(isset($_POST['deleteRecord'])&&isset($_POST['ID'])&&!isset($_POST['Col']))/*&
     	if(($changeCol=='StartTime'&&$changeTo>$all['EndTime'])||($changeCol=='EndTime'&&($changeTo<$all['StartTime']||$changeTo<$all['DeliveryTime']))||($changeCol=='DeliveryTime'&&$changeTo>$all['EndTime'])){
             header("Location:../deleteRecord.php?error=InvalidTimes");
         }else{
-            if(($all['Date']>=date('Y-m-d',time())||$changeCol=='Cost'||$changeCol=='Comments')&&$changeCol!='Room'){
+            if($all['Date']>=date('Y-m-d',time())||$changeCol=='Cost'||$changeCol=='Comments'){
                 $before=implode("|", $all);
-                $dbChange="UPDATE cateringdata SET $changeCol = ? WHERE cateringdata. ID = $changeID";//DO NOT CHANGE QUOTATION MARKS.
-                $stmt1 = mysqli_stmt_init($connection);
-                if(!mysqli_stmt_prepare($stmt1,$dbChange)){
-                    echo "SQL FAIL";
-                }else{
-                    mysqli_stmt_bind_param($stmt1,"s",$changeTo);
-                    mysqli_stmt_execute($stmt1);
-                    mysqli_stmt_close($stmt1); 
-                }
-
-                $result=mysqli_query( $connection, "SELECT * FROM cateringdata WHERE ID = $changeID");
-                $all =mysqli_fetch_assoc($result);
-
-                $after=implode("|", $all);
-                $dblog = "INSERT INTO log (User,BeforeChange,AfterChange,Type) VALUES ('$user','$before','$after','Edit');";
-                mysqli_query( $connection, $dblog );
-                header("Location:../deleteRecord.php");
-            }else if ($changeCol=='Room'&&$all['Date']>=date('Y-m-d',time())){
-                $before=implode("|", $all);
-                $floor = '0';
+                $floor = $all['Floor'];
                 if ($changeTo=='Agincourt'||$changeTo=='Bayview Village'||$changeTo=='Downsview'||$changeTo=='Guildwood'||$changeTo=='Hoggs Hollow'||$changeTo=='Port Union'||$changeTo=='Rouge'||$changeTo=='York Mills'){
                     $floor = '18';
                 }else if ($changeTo=='Black Creek'||$changeTo=='Bridle Path'||$changeTo=='High Park'||$changeTo=='Kingsway'||$changeTo=='Lawrence Heights'||$changeTo=='Little Italy'||$changeTo=='Mimico'||$changeTo=='Parkdale'){
                     $floor = '19';
-                }else{
+                }else if($changeTo=='Distillery District'||$changeTo=='Liberty Village'||$changeTo=='Leslieville'||$changeTo=='The Annex'||$changeTo=='The Beaches'){
                     $floor = '20';
                 }
                 $dbChange="UPDATE cateringdata SET $changeCol = ?,Floor= '$floor' WHERE cateringdata. ID = $changeID";//DO NOT CHANGE QUOTATION MARKS.

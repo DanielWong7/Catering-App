@@ -88,7 +88,7 @@ p[id="dateTime"]{
 .show p{
 	margin: 0;
 	width: 660px;
-	height: 100px;
+	height: 80px;
 	word-wrap: break-word;
 }
 .size1{
@@ -136,5 +136,13 @@ img[src="dshop-logo-small.png"]{
 	padding: 10px;
 }
 p[id="Restrictions"]{
-	color: red;
+	padding: 3px;
+	font-size:35px;
+	text-align: center;
+	vertical-align: middle;
+	background-color: #ff4d4d;
+	border-color: darkred;
+	border-style: solid;
+	border-radius: 5px;
+	border-width: 5px;
 }
