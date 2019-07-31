@@ -13,7 +13,7 @@ The App aims to digitize the way SAP employees book catering services for their 
 ## Quick Start
   * ### [Features](genius/ReleaseDoc1.docx)
   * ### [User Guide](genius/index%20(2).html)
-# Setup
+## Setup
 Install XAMPP from https://www.apachefriends.org/index.html.
 
 Open up the folder where you installed XAMPP and go to htdocs.
