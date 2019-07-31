@@ -13,7 +13,47 @@ The App aims to digitize the way SAP employees book catering services for their 
 ## Quick Start
   * ### [Features](genius/ReleaseDoc1.docx)
   * ### [User Guide](genius/index%20(2).html)
-  * ### [Start Up](https://github.com/Amarygdala/CateringApp/blob/master/README.md)  
+# Setup
+Install XAMPP from https://www.apachefriends.org/index.html.
+
+Open up the folder where you installed XAMPP and go to htdocs.
+
+Delete all the files preinstalled into htdocs.
+
+Drag all of the files from the repository EXCEPT FOR THE .sql FILES into htdocs.
+
+Run the XAMPP Control Panel/xampp-control.exe.
+
+Press the Config button beside Apache and select httpd-xampp.conf.
+
+Scroll down and find the <Directory "yourpath/phpMyAdmin"> and replace content with this.
+
+
+	AllowOverride AuthConfig
+	Order allow,deny
+	Require local
+	Allow from all
+	ErrorDocument 403 /error/XAMPP_FORBIDDEN.html.var
+
+
+(This will make the phpmyadmin page only accessible to the host).
+
+
+Now press Start beside Apache and MySQL.
+
+Open up a browser and go to http://localhost/phpmyadmin/ (If a login is prompt, the user should be 'root' with no password).
+
+Go to the left navbar and press New.
+
+Name the new database 'cateringapp' with collation utf8_general_ci.
+
+Now you can drag the cateringapp.sql file into the database. You should see two tables, cateringdata and log.
+
+Then do the exact same with the loginsystem.sql file.
+
+If you now type in localhost in the address bar it should redirect you to localhost/login_page.php.
+
+Username will be 'dshop' the password will be 'dshop123!'. This will redirect to the admin page where you can add/delete users. Logins from normal users will redirect to the form instead.
 ## *Acknowledgements*
 This SAP Catering App was made possible because of the hard work and hours put in by two groups of high school interns and their supervisor. Under supervision and guidance by Luis Sanroman Zugasti, the first group of high school interns: Talha Shaikh and Xiang Weng created the framework for the Catering Application. They worked extremely hard to push out a working copy of the App and by the end of their term at SAP they managed to do that. By creating that framework, the next group of interns: Danial Wong and Muhammad Hamza Mahboob, worked hard to complete enhancement requests and push out a copy of the SAP Catering App, which met the needs of the SAP Facilities Team. However, none of this could be done without the guidance of Luis and the resources available in the Dshop.  
 
